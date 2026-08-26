@@ -1,4 +1,13 @@
-﻿#!/usr/bin/env bash
+#!/usr/bin/env bash
+#
+# Intelligent Automations weekly video pipeline.
+#
+# Runs every step in order and STOPS AT THE FIRST FAILURE, naming the step.
+# A step that half-worked is treated as a failure. Nothing is published.
+#
+#   bash run.sh              full run, reuses an existing voiceover
+#   FORCE_TTS=1 bash run.sh  regenerate the voiceover too
+#
 set -uo pipefail
 cd "$(dirname "$0")"
 
@@ -45,3 +54,7 @@ run $NODE scripts/captions.mjs
 echo ""
 echo "=== DONE"
 ls -lh out/FINAL.mp4 out/upload.mp4 out/captions.md out/contact-sheet.png
+echo ""
+echo "LOOK AT out/contact-sheet.png BEFORE SHIPPING. Every layout bug this"
+echo "pipeline has ever had passed typecheck and was visible in one frame."
+echo "Nothing has been published. Upload is manual."
