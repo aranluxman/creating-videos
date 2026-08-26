@@ -1,0 +1,31 @@
+﻿{
+  "name": "ia-video",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Intelligent Automations weekly vertical short pipeline",
+  "type": "module",
+  "scripts": {
+    "tts": "node scripts/tts.mjs",
+    "align": "python3 scripts/align.py",
+    "captions": "node scripts/captions.mjs",
+    "still": "remotion still",
+    "render": "remotion render",
+    "studio": "remotion studio",
+    "typecheck": "tsc --noEmit",
+    "pipeline": "bash run.sh"
+  },
+  "dependencies": {
+    "@fontsource/archivo-black": "5.1.0",
+    "@fontsource/inter": "5.1.0",
+    "@remotion/bundler": "4.0.409",
+    "@remotion/cli": "4.0.409",
+    "@remotion/renderer": "4.0.409",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "remotion": "4.0.409"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.2",
+    "typescript": "5.9.3"
+  }
+}
