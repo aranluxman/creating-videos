@@ -24,30 +24,30 @@ export type Scene = {
 
 export const SCENES: Scene[] = [
   {
-    label: "Friday\nDinner Rush",
-    sub: "7:12 PM",
-    highlights: ["two calls", "across the street"],
-    visual: () => <CardStack items={["Call one", "Call two"]} />,
+    label: "Two\nLeads",
+    sub: "One gym, one night",
+    highlights: ["text back", "down the road"],
+    visual: () => <CardStack items={["Lead A: booked", "Lead B: lost"]} />,
   },
   {
-    label: "Fixed Costs",
-    highlights: ["rent", "staff", "advertising"],
-    visual: () => <Chips items={["Rent", "Staff", "Ads"]} />,
+    label: "The Gap",
+    highlights: ["followed up first"],
+    visual: () => <Chips items={["Replied", "Silent"]} />,
   },
   {
     label: "How It Works",
-    highlights: ["missed call text back", "within seconds"],
-    visual: () => <Flow steps={["Missed call", "Auto text", "Live reply"]} />,
+    highlights: ["abandoned enquiry follow up", "friendly message"],
+    visual: () => <Flow steps={["Enquiry", "Goes quiet", "Auto nudge"]} />,
   },
   {
     label: "What Good\nLooks Like",
-    highlights: ["five seconds", "real person"],
-    visual: () => <CardStack items={["Speed", "Clarity", "Handoff"]} />,
+    highlights: ["within minutes", "real person"],
+    visual: () => <CardStack items={["Fast reply", "One check in", "Human handoff"]} />,
   },
   {
-    label: "The Cost\nOf Waiting",
-    highlights: ["every missed call"],
-    visual: () => <CardStack items={["They call the next shop"]} />,
+    label: "The Cost\nOf Silence",
+    highlights: ["every quiet enquiry"],
+    visual: () => <Chips items={["Lost trial", "Lost member"]} />,
   },
   {
     label: "",

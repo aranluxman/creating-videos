@@ -11,9 +11,13 @@ F="${1:-out/FINAL.mp4}"
 
 DUR=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$F")
 
+# astats prints its summary at INFO level. With -v error the grep found
+# nothing, pipefail + set -e killed the script silently, and a good mux
+# looked like a failure. Use -v info, and never let an empty probe abort
+# before the checks below can report it as silence.
 rms () {
-  ffmpeg -v error -ss "$1" -t "$2" -i "$F" -map 0:a -af astats=metadata=1 \
-    -f null - 2>&1 | grep -m1 "RMS level dB" | awk '{print $NF}'
+  ffmpeg -v info -nostats -ss "$1" -t "$2" -i "$F" -map 0:a -af astats \
+    -f null - 2>&1 | grep -m1 "RMS level dB" | awk '{print $NF}' || true
 }
 
 LEAD=$(rms 0 2)

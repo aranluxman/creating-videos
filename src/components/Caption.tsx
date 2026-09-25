@@ -112,14 +112,21 @@ export const Caption: React.FC<{ line: string; highlights: string[] }> = ({
               borderRadius: 14,
               padding: "2px 16px 8px",
               textShadow: "none",
+              whiteSpace: "nowrap",
             }}
           >
             {s.text}
           </span>
         ) : (
-          <span key={idx} style={{ display: "inline-block" }}>
-            {s.text}
-          </span>
+          // Bug 6: a whole run of plain text rendered as ONE inline-block
+          // could not wrap around a chip, so every highlight was forced onto
+          // its own row and the caption read as a staircase. Plain text is
+          // emitted word by word so the flex row flows around the chips.
+          s.text.split(" ").filter(Boolean).map((w, j) => (
+            <span key={`${idx}-${j}`} style={{ display: "inline-block" }}>
+              {w}
+            </span>
+          ))
         )
       )}
     </div>

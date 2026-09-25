@@ -19,23 +19,34 @@ export const CLIENTS = {
 /** Restaurant for enquiry, ordering and after-hours topics.
  *  Gym for bookings, retention and follow-up topics.
  *  Alternate week to week. */
-export const CLIENT_NAME: string = CLIENTS.restaurant;
+export const CLIENT_NAME: string = CLIENTS.gym;
 
-export const TOPIC = "missed-call text-back";
+export const TOPIC = "abandoned enquiry follow-up";
 
 /** Used by scripts/captions.mjs for the YouTube title. */
-export const TOPIC_TITLE = "Missed Call Text Back";
+export const TOPIC_TITLE = "Abandoned Enquiry Follow Up";
+
+/** Used by scripts/captions.mjs. Topic-specific so last week's angle and
+ *  tags never leak into this week's post. */
+export const YT_TITLE = "Abandoned Enquiry Follow Up: Why Local Gyms Lose Members Before Day One";
+
+export const YT_TAGS = [
+  "abandoned enquiry follow up", "lead follow up", "small business automation",
+  "gym marketing", "fitness business", "local business marketing",
+  "ai for small business", "business automation", "intelligent automations",
+  "sms automation",
+];
 
 export const SCRIPT = `
-A shawarma shop missed two calls during the Friday dinner rush. One caller ordered from the place across the street. The other never called back at all.
+A gym got two trial enquiries on the same Monday night. One person got a text back that evening and booked a Tuesday class. The other heard nothing and joined a gym down the road.
 
-Both of those orders were already paid for in rent, in staff, and in advertising.
+Same form, same interest. The only difference was who followed up first.
 
-Missed call text back is simple. The phone rings out, and the caller gets a text within seconds asking what they need. It runs on its own, day and night.
+Abandoned enquiry follow up is simple. When someone asks about a trial and goes quiet, they get a friendly message that restarts the conversation. It runs on its own.
 
-Good setups reply within five seconds, ask one clear question, and hand the conversation to a real person during open hours.
+Good setups reply within minutes, check in once the next day, and hand warm leads to a real person to book.
 
-Without it, every missed call is a customer who found someone else before the dinner shift had even ended.
+Without it, every quiet enquiry is someone who wanted to join and simply joined somewhere else.
 
 Intelligent Automations builds these for local businesses like ${CLIENT_NAME}.
 

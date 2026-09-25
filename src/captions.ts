@@ -3,35 +3,35 @@
  * Timings are measured against the real voiceover, not estimated.
  */
 export const TIMINGS_ARE_MEASURED = true;
-export const AUDIO_DURATION = 48.300;
+export const AUDIO_DURATION = 53.447;
 export const TIMINGS: { start: number; end: number }[] =
 [
   {
     "start": 0.0,
-    "end": 8.487
+    "end": 10.602
   },
   {
-    "start": 8.487,
-    "end": 13.775
+    "start": 10.602,
+    "end": 15.932
   },
   {
-    "start": 13.775,
-    "end": 23.414
+    "start": 15.932,
+    "end": 27.123
   },
   {
-    "start": 23.414,
-    "end": 31.414
+    "start": 27.123,
+    "end": 34.471
   },
   {
-    "start": 31.414,
-    "end": 37.963
+    "start": 34.471,
+    "end": 41.347
   },
   {
-    "start": 37.963,
-    "end": 43.221
+    "start": 41.347,
+    "end": 47.629
   },
   {
-    "start": 43.221,
-    "end": 48.3
+    "start": 47.629,
+    "end": 53.447
   }
 ];

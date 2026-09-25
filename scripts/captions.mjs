@@ -6,7 +6,7 @@
  * in all three. No emojis, no hashtags, no em dashes.
  */
 import fs from "node:fs";
-import { LINES, CLIENT_NAME, TOPIC, TOPIC_TITLE, WORD_COUNT } from "../src/script.ts";
+import { LINES, CLIENT_NAME, TOPIC, YT_TITLE, YT_TAGS, WORD_COUNT } from "../src/script.ts";
 import { AUDIO_DURATION } from "../src/captions.ts";
 
 const hook = LINES[0];
@@ -19,7 +19,7 @@ const CTA_LONG = "Book a free 20 minute Business Automation Review: intelligenta
 const HANDLES = "Instagram and TikTok: @intelligentautomation_s";
 const TAGLINE = "Smarter Solutions. Better Results.";
 
-const ytTitle = `${TOPIC_TITLE}: Why Local Businesses Lose Orders After Hours`;
+const ytTitle = YT_TITLE;
 
 const ytDescription = [
   hook,
@@ -36,11 +36,7 @@ const ytDescription = [
   TAGLINE,
 ].join("\n");
 
-const ytTags = [
-  "missed call text back", "small business automation", "local business marketing",
-  "ai for small business", "customer follow up", "restaurant marketing",
-  "business automation", "intelligent automations", "lead follow up", "sms automation",
-].join(", ");
+const ytTags = YT_TAGS.join(", ");
 
 const instagram = [
   hook,
