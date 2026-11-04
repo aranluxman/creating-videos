@@ -41,14 +41,15 @@ def die(msg):
 
 
 def read_lines():
-    src = open("src/script.ts").read()
-    client = re.search(r'restaurant:\s*"([^"]+)"', src).group(1)
-    gym = re.search(r'gym:\s*"([^"]+)"', src).group(1)
-    which = re.search(r"export const CLIENT_NAME:\s*string\s*=\s*CLIENTS\.(\w+)", src).group(1)
-    name = client if which == "restaurant" else gym
-    body = re.search(r"export const SCRIPT = `(.*?)`\.trim\(\)", src, re.S).group(1)
-    body = body.replace("${CLIENT_NAME}", name).strip()
-    return [re.sub(r"\s+", " ", l).strip() for l in re.split(r"\n\s*\n", body) if l.strip()]
+    # Read LINES straight from src/script.ts through node, so this never has
+    # to re-implement the client lookup or template substitution in regex.
+    out = subprocess.run(
+        ["node", "--experimental-strip-types", "--no-warnings", "--input-type=module",
+         "-e", "import { LINES } from './src/script.ts'; console.log(JSON.stringify(LINES));"],
+        capture_output=True, text=True)
+    if out.returncode != 0:
+        die("could not read LINES from src/script.ts: " + out.stderr.strip())
+    return json.loads(out.stdout)
 
 
 def duration(path):

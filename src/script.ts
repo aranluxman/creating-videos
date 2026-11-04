@@ -3,54 +3,85 @@
  *
  * Editing rules (the weekly routine depends on them):
  *  - Blank lines separate LINES. Each line becomes one scene.
- *  - Structure, in order: concrete two-thing contrast hook (a specific story,
- *    never a statistic), tension in one line, plain definition, what good
- *    looks like, cost of ignoring, brand with client, CTA.
- *  - Target 130 words. No emojis, no hashtags, no em dashes.
- *  - CLIENT_NAME must be one of CLIENTS. Never invent a client, and never
- *    claim anything about them beyond the generic line below.
+ *  - Exactly 6 lines, in this order:
+ *      1. HOOK: a concrete two-thing contrast, a specific story, never a
+ *         statistic. 22 words or fewer. It is the first thing people hear.
+ *      2. DEFINE: what the service is, in plain words.
+ *      3. GOOD: what a good setup does.
+ *      4. COST: what it costs to skip it. Start with "Without <the service
+ *         name>," never "Without it," because this line is reused alone in
+ *         the TikTok caption.
+ *      5. BRAND: the client line (see CLIENT_WORK below).
+ *      6. CTA: keep CTA_LINE exactly. The QR code is on screen for it.
+ *  - 80 to 100 words total (about 35 seconds). No emojis, hashtags, em dashes.
+ *  - TOPIC must be one of SERVICES.
+ *  - CLIENT_NAME must be one of CLIENTS. Never invent a client.
  */
 
 export const CLIENTS = {
-  restaurant: "Tasty Shawarma",
-  gym: "Lyfestyle Athletics",
+  pronto: "Pronto Automotive",
+  lyfestyle: "Lyfestyle Athletics",
+  motive: "Motive Care",
 } as const;
 
-/** Restaurant for enquiry, ordering and after-hours topics.
- *  Gym for bookings, retention and follow-up topics.
- *  Alternate week to week. */
-export const CLIENT_NAME: string = CLIENTS.gym;
+/** The ONLY specific claims allowed about a client. For any other topic,
+ *  the BRAND line must stay generic:
+ *  "Intelligent Automations builds AI tools for local businesses like <client>." */
+export const CLIENT_WORK: Record<string, string[]> = {
+  "Pronto Automotive": ["websites", "custom business software"],
+  "Motive Care": ["AI chatbots"],
+  "Lyfestyle Athletics": [],
+};
 
-export const TOPIC = "abandoned enquiry follow-up";
+/** Everything Intelligent Automations sells. One is picked each week, at
+ *  random, from those not used in the last 4 weeks. `visual` names the mock
+ *  in src/components/Mocks.tsx built for that service. */
+export const SERVICES = [
+  { topic: "AI chatbots", visual: "ChatPhone" },
+  { topic: "voice AI receptionist", visual: "CallPhone" },
+  { topic: "secure member portals", visual: "PortalLogin" },
+  { topic: "websites", visual: "BrowserSite + MobileSite" },
+  { topic: "custom business software", visual: "Dashboard" },
+  { topic: "local SEO", visual: "SearchRank" },
+  { topic: "automated quote follow-up", visual: "QuoteTimeline" },
+  { topic: "review collection", visual: "ReviewStars" },
+  { topic: "missed-call text-back", visual: "ChatPhone with banner" },
+  { topic: "abandoned enquiry follow-up", visual: "ChatPhone" },
+] as const;
+
+export const CLIENT_NAME: string = CLIENTS.pronto;
+
+export const TOPIC = "websites";
 
 /** Used by scripts/captions.mjs for the YouTube title. */
-export const TOPIC_TITLE = "Abandoned Enquiry Follow Up";
+export const TOPIC_TITLE = "Websites For Local Businesses";
 
 /** Used by scripts/captions.mjs. Topic-specific so last week's angle and
  *  tags never leak into this week's post. */
-export const YT_TITLE = "Abandoned Enquiry Follow Up: Why Local Gyms Lose Members Before Day One";
+export const YT_TITLE = "Small Business Website: Why Customers Pick The Shop With The Better Site";
 
 export const YT_TAGS = [
-  "abandoned enquiry follow up", "lead follow up", "small business automation",
-  "gym marketing", "fitness business", "local business marketing",
+  "small business website", "auto shop website", "website design",
+  "local business marketing", "mobile friendly website", "web design markham",
   "ai for small business", "business automation", "intelligent automations",
-  "sms automation",
+  "pronto automotive",
 ];
 
+export const CTA_LINE =
+  "Scan the code or visit intelligentautomations.ca to book your free twenty minute review.";
+
 export const SCRIPT = `
-A gym got two trial enquiries on the same Monday night. One person got a text back that evening and booked a Tuesday class. The other heard nothing and joined a gym down the road.
+Two auto shops, same street. One has a fast, modern website and gets the booking. The other looks closed.
 
-Same form, same interest. The only difference was who followed up first.
+A real website shows your services, prices and reviews, and lets people book in two taps, right from their phone.
 
-Abandoned enquiry follow up is simple. When someone asks about a trial and goes quiet, they get a friendly message that restarts the conversation. It runs on its own.
+Good sites load fast, look great on mobile, and turn visitors into calls and bookings.
 
-Good setups reply within minutes, check in once the next day, and hand warm leads to a real person to book.
+Without a real website, customers judge you before they ever call, and quietly pick someone else.
 
-Without it, every quiet enquiry is someone who wanted to join and simply joined somewhere else.
+Intelligent Automations built the new website for ${CLIENT_NAME}.
 
-Intelligent Automations builds these for local businesses like ${CLIENT_NAME}.
-
-Book a free twenty minute Business Automation Review at intelligentautomations.ca.
+${CTA_LINE}
 `.trim();
 
 /** One entry per spoken line, in order. Blank-line separated above. */

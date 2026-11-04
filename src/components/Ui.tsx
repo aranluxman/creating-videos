@@ -25,15 +25,16 @@ export const Rise: React.FC<{
 };
 
 /** Section headline. SHORT visual label only. Never the spoken line. */
-export const Headline: React.FC<{ text: string; sub?: string }> = ({
+export const Headline: React.FC<{ text: string; sub?: string; size?: number }> = ({
   text,
   sub,
+  size = 76,
 }) => (
   <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
     <div
       style={{
         fontFamily: THEME.display,
-        fontSize: 96,
+        fontSize: size,
         lineHeight: 1.05,
         letterSpacing: -1,
         color: THEME.white,
@@ -173,8 +174,29 @@ export const Flow: React.FC<{ steps: string[] }> = ({ steps }) => (
   </div>
 );
 
+/** Animated IA monogram: a ring draws itself around the letters. */
+const Monogram: React.FC = () => {
+  const frame = useCurrentFrame();
+  const draw = interpolate(frame, [0, 24], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const C = 2 * Math.PI * 92;
+  return (
+    <div style={{ position: "relative", width: 200, height: 200 }}>
+      <svg width={200} height={200} style={{ position: "absolute", inset: 0, transform: "rotate(-90deg)" }}>
+        <circle cx={100} cy={100} r={92} fill="none" stroke={THEME.cyanDim} strokeWidth={8} />
+        <circle cx={100} cy={100} r={92} fill="none" stroke={THEME.cyan} strokeWidth={8} strokeLinecap="round" strokeDasharray={C} strokeDashoffset={C * (1 - draw)} />
+      </svg>
+      <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: THEME.display, fontSize: 84, color: THEME.white }}>
+        IA
+      </div>
+    </div>
+  );
+};
+
 export const Lockup: React.FC<{ client?: string }> = ({ client }) => (
   <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
+    <Rise>
+      <Monogram />
+    </Rise>
     <div
       style={{
         fontFamily: THEME.display,
@@ -207,17 +229,21 @@ export const Lockup: React.FC<{ client?: string }> = ({ client }) => (
       Smarter Solutions. Better Results.
     </div>
     {client ? (
-      <div
-        style={{
-          marginTop: 10,
-          fontFamily: THEME.body,
-          fontWeight: 700,
-          fontSize: 40,
-          color: THEME.cyan,
-        }}
-      >
-        Trusted by {client}
-      </div>
+      <Rise delay={12} style={{ alignSelf: "flex-start", marginTop: 16 }}>
+        <div
+          style={{
+            fontFamily: THEME.body,
+            fontWeight: 700,
+            fontSize: 40,
+            color: THEME.navyDeep,
+            background: THEME.cyan,
+            borderRadius: 999,
+            padding: "14px 34px",
+          }}
+        >
+          Trusted by {client}
+        </div>
+      </Rise>
     ) : null}
   </div>
 );

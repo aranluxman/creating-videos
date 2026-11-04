@@ -9,11 +9,12 @@ import fs from "node:fs";
 import { LINES, CLIENT_NAME, TOPIC, YT_TITLE, YT_TAGS, WORD_COUNT } from "../src/script.ts";
 import { AUDIO_DURATION } from "../src/captions.ts";
 
-const hook = LINES[0];
-const tension = LINES[1];
-const define = LINES[2];
-const good = LINES[3];
-const cost = LINES[4];
+// Line order is fixed by src/script.ts: hook, define, good, cost, brand, cta.
+if (LINES.length !== 6) {
+  console.error(`captions: expected 6 lines in src/script.ts, found ${LINES.length}`);
+  process.exit(1);
+}
+const [hook, define, good, cost] = LINES;
 
 const CTA_LONG = "Book a free 20 minute Business Automation Review: intelligentautomations.ca";
 const HANDLES = "Instagram and TikTok: @intelligentautomation_s";
@@ -28,7 +29,7 @@ const ytDescription = [
   "",
   good,
   "",
-  `Intelligent Automations builds AI chatbots, voice agents and automated follow-up for local businesses like ${CLIENT_NAME}.`,
+  `Intelligent Automations builds AI chatbots, voice AI receptionists, websites and custom business software for local businesses like ${CLIENT_NAME}.`,
   "",
   CTA_LONG,
   HANDLES,
@@ -41,13 +42,11 @@ const ytTags = YT_TAGS.join(", ");
 const instagram = [
   hook,
   "",
-  tension,
-  "",
   `${define} ${good}`,
   "",
   cost,
   "",
-  "Free 20 minute Business Automation Review. Link in bio.",
+  "Free 20 minute Business Automation Review. Scan the code in the video or tap the link in bio.",
   "",
   TAGLINE,
 ].join("\n");

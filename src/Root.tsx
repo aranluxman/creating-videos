@@ -7,6 +7,7 @@ import "@fontsource/inter/700.css";
 import { IAVideo } from "./Video";
 import { VIDEO } from "./theme";
 import { AUDIO_DURATION } from "./captions";
+import { KitPreview, KIT, KIT_SECONDS } from "./Kit";
 
 /** Tail padding so the last caption does not cut on the final syllable. */
 const TAIL_SECONDS = 0.6;
@@ -23,6 +24,14 @@ export const RemotionRoot: React.FC = () => (
         30,
         Math.round((AUDIO_DURATION + TAIL_SECONDS) * VIDEO.fps)
       )}
+    />
+    <Composition
+      id="KitPreview"
+      component={KitPreview}
+      width={VIDEO.width}
+      height={VIDEO.height}
+      fps={VIDEO.fps}
+      durationInFrames={KIT.length * KIT_SECONDS * VIDEO.fps}
     />
   </>
 );
