@@ -25,7 +25,7 @@ const ytTitle = YT_TITLE;
 const ytDescription = [
   hook,
   "",
-  `This video covers what ${TOPIC} actually is, what a good setup does differently, and what it costs a local business to leave it switched off.`,
+  `This video covers ${TOPIC}: what it is, what a good setup does differently, and what it costs a local business to go without it.`,
   "",
   good,
   "",
